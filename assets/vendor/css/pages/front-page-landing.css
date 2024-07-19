@@ -121,6 +121,8 @@
 .landing-features .features-icon-wrapper .features-icon-box .features-icon-description {
     max-width: 19.25rem;
     margin: 0 auto
+
+    
 }
 
 .landing-reviews {
@@ -161,7 +163,7 @@
     object-fit: contain
 }
 
-.landing-team .card,.landing-team .card .team-image-box {
+.landing-team .landing-team .card .team-image-box {
     border-top-left-radius: 5.625rem;
     border-top-right-radius: 1.25rem
 }
