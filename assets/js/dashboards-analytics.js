@@ -12,6 +12,175 @@
   axisColor = config.colors.axisColor;
   borderColor = config.colors.borderColor;
 
+
+
+
+
+  // Pelamar Jurusan Terbanyak - Line Chart
+  // --------------------------------------------------------------------
+  var options = {
+    series: [{
+      name: "PM",
+      data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
+  },  {
+    name: 'RPL',
+    data: [23,32,43,24,54,34,6,4,2]
+  }, {
+    name: 'AKL',
+    data: [34,21,43,53,23,12,43,23]
+  }
+],
+    chart: {
+    height: 165,
+    type: 'line',
+    zoom: {
+      enabled: false
+    }
+  },
+  dataLabels: {
+    enabled: false
+  },
+  stroke: {
+    curve: 'straight'
+  },
+  title: {
+    // text: 'Product Trends by Month',
+    align: 'left'
+  },
+  grid: {
+    row: {
+      colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+      opacity: 0.5
+    },
+  },
+  xaxis: {
+    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+  }
+  };
+
+  var chart = new ApexCharts(document.querySelector("#pelamar"), options);
+  chart.render();
+
+
+
+
+  //  Pekerjaan Terbanyak - Pie Chart
+  // --------------------------------------------------------------------
+  var options = {
+    series: [44, 55, 13],
+    chart: {
+    width: 380,
+    type: 'pie',
+  },
+  labels: ['Front End Developer', 'Back End Developer', 'Dev Ops'],
+  responsive: [{
+    breakpoint: 480,
+    options: {
+      chart: {
+        width: 200,
+      },
+      legend: {
+        position: 'bottom'
+      }
+    }
+  }]
+  };
+
+  var chart = new ApexCharts(document.querySelector("#loker_terbanyak"), options);
+  chart.render();
+
+
+  var initialData =  [44, 55, 57, 56, 61, 58, 64, 34, 34, 23, 54,44, 55, 57, 56, 61, 58, 64, 34, 34, 23, 54, 54,32,32];
+  var options = {
+    series: [{
+      name: 'Lowongan Pekerjaan',
+      data: initialData
+    }],
+    chart: {
+      type: 'bar',
+      height: 350,
+      events: {
+        dataPointSelection: function(event, chartContext, config) {
+          console.log(config.dataPointIndex);
+        }
+      }
+    },
+    plotOptions: {
+      bar: {
+        horizontal: false,
+        columnWidth: '55%',
+        endingShape: 'rounded'
+      },
+    },
+    dataLabels: {
+      enabled: false
+    },
+    stroke: {
+      show: true,
+      width: 2,
+      colors: ['transparent']
+    },
+    xaxis: {
+      categories: ['12AM', '1AM', '2AM', '3AM', '4AM', '5AM', '6AM', '7AMA', '8AM', '9AM', '10AM', '11AM','12AM','1PM', '2PM', '3PM', '4PM', '5PM', '6PM', '7APM', '8PM', '9PM', '10PM', '11PM','12M',],
+    },
+    yaxis: {
+      title: {
+        text: 'Jumlah'
+      }
+    },
+    fill: {
+      opacity: 1
+    },
+    tooltip: {
+      y: {
+        formatter: function (val) {
+          return " " + val + " "
+        }
+      }
+    }
+  };
+
+  const chart1 = new ApexCharts(document.querySelector("#loker_perbulan"), options);
+  chart1.render();
+
+  // Jangka Waktu Lowongan Pekerjaan 
+  // --------------------------------------------------------------------
+  document.getElementById('jangka_waktu').addEventListener('change', function() {
+    var select_jangka_waktu = this.value;
+    var newData = [];
+    var newCategories = [];
+
+    switch (select_jangka_waktu) {
+      case 'hari_ini':
+        newData = [44, 55, 57, 56, 61, 58, 64, 34, 34, 23, 54, 44, 55, 57, 56, 61, 58, 64, 34, 34, 23, 54, 54, 32, 32];
+        newCategories = ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'];
+        break;
+      case 'minggu_lalu':
+        newData = [30, 40, 45, 50, 55, 60, 24];
+        newCategories = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
+        break;
+      case 'bulan_lalu':
+        newData = [50, 45, 40, 35, 30, 25, 20, 15, 10, 5, 65, 70, 75, 80, 85, 44, 55, 57, 56, 61, 58, 64, 34, 32, 13,56, 12, 24, 15, 57];
+        newCategories = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25','26', '27', '28', '29', '30'];
+        break;
+      case 'tahun_ini':
+        newData = [100, 120, 140, 160, 180, 200, 220, 240, 260, 280, 300, 124];
+        newCategories = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+        break;
+      default:  
+        break;
+    }
+
+    // Memperbarui data seri dan kategori pada grafik
+    chart1.updateOptions({
+      xaxis: {
+        categories: newCategories
+      }
+    });
+    chart1.updateSeries([{ data: newData }]);
+  });
+
+
   // Total Revenue Report Chart - Bar Chart
   // --------------------------------------------------------------------
   const totalRevenueChartEl = document.querySelector('#totalRevenueChart'),
@@ -273,6 +442,8 @@
     const totalRevenueChart = new ApexCharts(totalRevenueChartEl, totalRevenueChartOptions);
     totalRevenueChart.render();
   }
+
+  
 
   // Growth Chart - Radial Bar Chart
   // --------------------------------------------------------------------

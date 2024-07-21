@@ -105,3 +105,53 @@
   text-align: center;
   margin-top: 1rem;
 }
+.dataTables_length label {
+  display: flex;
+  align-items: center;
+}
+.dataTables_length select {
+  width: auto;
+  margin: 0 0.5em;
+}
+.dt-action-buttons .btn-group button {
+  margin-left: 0.5rem;
+}
+.dt-action-buttons .btn-group .btn-secondary {
+  display: flex;
+  align-items: center;
+}
+.dt-action-buttons .btn-group .btn-primary {
+  background-color: #5a67d8;
+  border-color: #5a67d8;
+  color: #fff;
+}
+.dt-action-buttons .btn-group .btn-primary:hover {
+  background-color: #4c51bf;
+  border-color: #4c51bf;
+}
+.dropzone {
+  border: 2px dashed #d3d3d3;
+  border-radius: 5px;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+  background-color: #f9f9f9;
+}
+.dz-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  color: #6c757d;
+}
+.dz-message i {
+  font-size: 50px;
+  margin-bottom: 20px;
+  color: #6c757d;
+}
+.dz-message .btn {
+  color: #5a67d8;
+  text-decoration: underline;
+  font-size: 16px;
+}
